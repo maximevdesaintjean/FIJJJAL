@@ -24,6 +24,7 @@ class GPS():
                 self.lng = msg.longitude
                 print(self.lat)
                 print(self.lng)
+                
             except Exception as e:
                 print(e)
                 
