@@ -1,3 +1,8 @@
+.vscode
+*.exe
+*.o
+*.txt
+
 # Prerequisites
 *.d
 
