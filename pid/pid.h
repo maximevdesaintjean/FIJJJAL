@@ -6,11 +6,16 @@ using namespace std;
 class PID {
     public:
         PID();
-        PID(float Kp, float Ki, float Kd);
+        PID(float minBound, float maxBound, float Kp, float Ki, float Kd);
 
+        float getMinBound();
+        float getMaxBound();
         float getKp();
         float getKi();
         float getKd();
+
+        void setMinBound(float minBound);
+        void setMaxBound(float maxBound);
         void setKp(float Kp);
         void setKi(float Ki);
         void setKd(float Kd);
@@ -21,11 +26,17 @@ class PID {
         float calcPID(float setPoint, float input);
     
     private:
+        float minBound;
+        float maxBound;
+        int errorMax = 10;
         float Kp;
         float Ki;
         float Kd; 
         float previousError = 0;
-        float sumOfError = 0;       
+        float cycle = 1;
+        float sumOfError = 0;
+
+        float calcMap(float output);       
 };
 
 #endif
