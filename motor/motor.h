@@ -8,7 +8,6 @@ class Motor {
         Motor(int pin);
 
         void initialize();
-        void start();
         void stop();
         void setPWM(int value);
      
