@@ -17,7 +17,10 @@ class Ultrasound {
         int echo;
         int trig;
 
-        std::tuple<long, long> pulse();
+        volatile long end;
+        volatile long start;
+
+        void pulse();
 };
 
 #endif
