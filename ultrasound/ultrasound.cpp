@@ -6,6 +6,11 @@
 
 using namespace std;
 
+Ultrasound::Ultrasound(int echo, int trig) {
+    this->echo = echo;
+    this->trig = trig;
+}
+
 void Ultrasound::initialize()
 {
     
@@ -26,7 +31,7 @@ double Ultrasound::getDistance()
 
     long now = gpioTick();
 
-    while (end== 0)
+    while (end == 0)
     {
         std::tie(end, start) = Ultrasound::pulse();
 	}
@@ -35,9 +40,9 @@ double Ultrasound::getDistance()
     long difference_time = end - start;
 
     //distanceCm = 50*((DifferenceTimeUsec/1000000.0)*340.29);
-    double distance = (double)difference_time/58.7734;
+    double distance = (double)difference_time / 58.7734;
 	
-	if (end!= 0)
+	if (end != 0)
 		return distance;
     else
 		return 0;
