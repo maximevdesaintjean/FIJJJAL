@@ -1,4 +1,5 @@
-
+#include <iostream>
+#include <pigpio.h>
 
 #include "./motor/motor.h"
 #include "./pid/pid.h"

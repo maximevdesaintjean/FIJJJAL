@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+/* Constructors */
 PID::PID() {
     this->minBound = 1500; /* At verify */
     this->maxBound = 1900;
@@ -19,6 +20,7 @@ PID::PID(float minBound, float maxBound, float Kp, float Ki, float Kd) {
     this->Kd = Kd;
 }
 
+/* Getter */
 float PID::getMinBound() {
     return this->minBound;
 }
@@ -39,6 +41,8 @@ float PID::getKd() {
     return this->Kd;
 }
 
+
+/* Setter */
 void PID::setMinBound(float minBound) {
     this->minBound = minBound >=1500 ? this->minBound = minBound : this->minBound = 1500;
 }
@@ -59,6 +63,13 @@ void PID::setKd(float Kd) {
     this->Kd = Kd;
 }
 
+
+/* ******************** */
+/* Calcul the regulator */
+/* ******************** */
+
+/* Regulator proportional */
+/* Takes into account also the instant error */
 float PID::calcP(float setPoint, float input) {
     float error = setPoint - input;
     float output = this->Kp * error;
@@ -66,6 +77,8 @@ float PID::calcP(float setPoint, float input) {
     return calcMap(output);
 }
 
+/* Regulator proporrional & integrator */
+/* Takes into account the instant error and the prediction of the futur error */
 float PID::calcPI(float setPoint, float input) {
     float error = setPoint - input;
     float output = (this->Kp * error) + (this->Ki * this->sumOfError/this->cycle);
@@ -75,6 +88,8 @@ float PID::calcPI(float setPoint, float input) {
     return calcMap(output);
 }
 
+/* Regulator proportional & derivator */
+/* Takes into account the instant error and the previous error */
 float PID::calcPD(float setPoint, float input) {
     float error = setPoint - input;
     float output = (this->Kp * error) + (this->Kd * this->previousError);
@@ -83,6 +98,8 @@ float PID::calcPD(float setPoint, float input) {
     return calcMap(output);
 }
 
+/* Regulator proportional, integrator & derivator */
+/* Taks into account the instant, futur and previous errors */
 float PID::calcPID(float setPoint, float input) {
     float error = setPoint - input;
     float output = (this->Kp * error) + (this->Kd * this->previousError) + (this->Ki * this->sumOfError/this->cycle);
@@ -93,13 +110,20 @@ float PID::calcPID(float setPoint, float input) {
     return calcMap(output);
 }
 
+/* Allows to map the regulator output at the ESC input */
 float PID::calcMap(float output) {
+    /* Take the maximum output acceptable with the error max acceptable */
     float outputMax = this->Kp * this->errorMax;
+
+    /* Calculate the ESC input */
     float newOutput = this->minBound + ((output/outputMax) * (this->maxBound - this->minBound));
 
     if (newOutput <= 1200) {
         return 1200;
     } 
+    else if (newOutput >= 1900) {
+        return 1900;
+    }
     else {
         return newOutput;
     }
