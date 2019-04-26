@@ -20,7 +20,8 @@ The PI regulator use the proportional and integrator actions. </br> The integrat
 We have `action = Kp * error + Ki * sumOfError` where Ki is egale to the integrator factor.
 
 ### Regulator PD
-
+Now we can see of the futur and the present, we need to see in the past, the derivator action does that. </br>
+The output action is calculated like that : `Kp * error + Kd * previousError` where Kd is the derivator factor.
 
 ### Regulator PID
 
