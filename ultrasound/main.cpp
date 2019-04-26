@@ -5,16 +5,22 @@
 
 using namespace std;
 
-int trigger = 4;
-int echo = 17;
-
 int main()
 {
-    Ultrasound ultra = Ultrasound(echo, trigger);
-    ultra.initialize();
+    while (gpioInitialise() < 0)
+    {
+      fprintf(stderr, "pigpio initialisation failed\n");
+    }
+
+    Ultrasound ultra1 = Ultrasound(27, 17);
+    Ultrasound ultra2 = Ultrasound(26, 19);
+    ultra1.initialize();
+    ultra2.initialize();
 
     while(1){
 		gpioSleep(PI_TIME_RELATIVE, 0, 500000);
-        cout << "Distance is " << ultra.getDistance() << " cm." << endl;   
+        cout << "Distance1 is " << ultra1.getDistance() << " cm." << endl;
+        gpioSleep(PI_TIME_RELATIVE, 0, 500000);
+        cout << "Distance2 is " << ultra2.getDistance() << " cm." << endl;  
     }
 }

@@ -13,7 +13,6 @@ Ultrasound::Ultrasound(int echo, int trig) {
 
 void Ultrasound::initialize()
 {
-    
     gpioSetMode(this->trig, PI_OUTPUT); 
     gpioSetMode(this->echo, PI_INPUT); 
     gpioWrite(this->trig, 0);
@@ -22,25 +21,19 @@ void Ultrasound::initialize()
 
 double Ultrasound::getDistance()
 {
-	long end;
-    long start;
+	end = 0;
 
 	gpioWrite(this->trig, 1);
 	gpioDelay(10);
 	gpioWrite(this->trig, 0);
 
-    long now = gpioTick();
-
     while (end == 0)
     {
-        std::tie(end, start) = Ultrasound::pulse();
+        Ultrasound::pulse();
 	}
 
-
     long difference_time = end - start;
-
-    //distanceCm = 50*((DifferenceTimeUsec/1000000.0)*340.29);
-    double distance = (double)difference_time / 58.7734;
+    double distance = (double)difference_time/58.7734;
 	
 	if (end != 0)
 		return distance;
@@ -48,15 +41,12 @@ double Ultrasound::getDistance()
 		return 0;
 }
 
-std::tuple<long, long> Ultrasound::pulse()
+void Ultrasound::pulse()
 {
-    long start_time = gpioTick();
-    long end_time;
+    start = gpioTick();
 
-    while ( gpioRead(echo) == 1 )
+    while ( gpioRead(this->echo) == 1 )
     {
-		end_time = gpioTick();
+		end = gpioTick();
 	}
-
-    return std::make_tuple(start_time, end_time);
 }
