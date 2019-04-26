@@ -10,6 +10,7 @@ using namespace std;
 Ultrasound::Ultrasound(int echo, int trig) {
     this->echo = echo;
     this->trig = trig;
+    this->initialize();
 }
 
 /* Initialise pin for ultrasound */

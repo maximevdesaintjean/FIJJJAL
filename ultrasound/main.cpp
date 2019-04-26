@@ -14,8 +14,6 @@ int main()
 
     Ultrasound ultra1 = Ultrasound(27, 17);
     Ultrasound ultra2 = Ultrasound(26, 19);
-    ultra1.initialize();
-    ultra2.initialize();
 
     while(1){
 		gpioSleep(PI_TIME_RELATIVE, 0, 500000);
