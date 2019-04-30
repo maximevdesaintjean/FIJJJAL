@@ -15,6 +15,7 @@ We can create four differents regulators:
 3) PD
 4) PID
 
+
 ### Regulator P
 This regulator is based only on the present error. </br> So, the action on the systeme is calculate like that : `action = Kp * error` where Kp is egale to the proportional factor.
 
@@ -29,5 +30,7 @@ The output action is calculated like that : `Kp * error + Kd * previousError` wh
 The derivator action allows to increase the system's dynamic. Be careful, to add too much action, can destabilize the system.
 
 ### Regulator PID
+This regulator is the most completed, we have the three actions. </br>
+We can cancel the stati error with the integrator, increase the dynamic and "boost" with the proportional.
 
 ## ESC mapping
