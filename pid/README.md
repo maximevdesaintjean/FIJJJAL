@@ -1,6 +1,9 @@
 # PID
 The PID is difficult to calculate, so we have consulte a [raspberry site](https://projects.raspberrypi.org/en/projects/robotPID/5) to understand how make a simple PID. </br>
-The principe is simple, we need to see the present, futur and past error to make the proportional, integrator and derivator action.
+The principe is simple, we need to see the present, futur and past error to make the proportional, integrator and derivator actions.
+
+## Why we need this ?
+The PID allows to control the motors. We can see the motor like a systeme, when we to move the drone, we control the motion with a set point. Each motor must follow the set point and the PID allows to do that.
 
 ## Calcul
 The regulation is based on a set-point and a mesured value. </br>
