@@ -9,12 +9,11 @@ int main()
 {
     Gyro gyro;
 
-    if(gyro.initialise()) {
-        while(1){
-            gyro.readXY();
+    gyro.initialise();
+    while(1){
+        gyro.readXY();
             
-            printf("Rotation in X-Axis : %d \n", gyro.xy.x);
-	        printf("Rotation in Y-Axis : %d \n", gyro.xy.y);
-        }
+        printf("Rotation in X-Axis : %d \n", gyro.xy.x);
+	    printf("Rotation in Y-Axis : %d \n", gyro.xy.y);
     }
 }

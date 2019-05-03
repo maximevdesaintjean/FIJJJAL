@@ -15,7 +15,7 @@ class Gyro {
 
 
 
-        int initialise();
+        void initialise();
         void readXY();
 
         XY xy;
@@ -24,7 +24,7 @@ class Gyro {
     private:
         int file;
 
-        int i2cInitialise(char *bus, char address);
+        void i2cInitialise(char *bus, char address);
         int readAxis(char lsb_add, char msb_add);
 
        

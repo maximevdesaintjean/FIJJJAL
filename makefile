@@ -28,7 +28,7 @@ ultrasound.o: ./ultrasound/ultrasound.cpp ./ultrasound/ultrasound.h
 pid.o: ./pid/pid.cpp ./pid/pid.h
 	$(CC) -o ./pid/pid.o -c ./pid/pid.cpp
 
-#Ultrasound
+#gyroscope
 gyro.o: ./gyro/gyro.cpp ./gyro/gyro.h
 	$(CC) -o ./gyro/gyro.o -c ./gyro/gyro.cpp
 
