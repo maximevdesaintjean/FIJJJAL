@@ -46,15 +46,15 @@ try:
 
                                 # Look for the sign of the latitude (N --> + / S --> -)
                                 if (informations[0] == 0xFF):
-                                    latitude = float("+{}.{}".format(int(informations[1]), int(informations[2])))
+                                    latitude = float("+{}.{}{}{}".format(int(informations[1]), int(informations[2]), int(informations[3]), int(informations[4])))
                                 else : 
-                                    latitude = float("-{}.{}".format(int(informations[1]), int(informations[2])))
+                                    latitude = float("-{}.{}{}{}".format(int(informations[1]), int(informations[2]), int(informations[3]), int(informations[4])))
 
                                 # Look for the sign of the longitude (E --> + / O --> -)
-                                if (informations[3] == 0xFF):
-                                    longitude = float("+{}.{}".format(int(informations[4]), int(informations[5])))
+                                if (informations[5] == 0xFF):
+                                    longitude = float("+{}.{}{}{}".format(int(informations[6]), int(informations[7]), int(informations[8]), int(informations[9])))
                                 else : 
-                                    longitude = float("-{}.{}".format(int(informations[4]), int(informations[5])))
+                                    longitude = float("-{}.{}{}{}".format(int(informations[6]), int(informations[7]), int(informations[8]), int(informations[9])))
 
                                 coord = [latitude, longitude]
                                 print(coord)

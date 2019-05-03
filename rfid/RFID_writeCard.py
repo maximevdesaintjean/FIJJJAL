@@ -29,8 +29,8 @@ try:
                 # This is once more called only if it's not already authorized for this block
                 util.do_auth(util.block_addr(2, 1))
                 # Now we can do some "lower-level" stuff with block 10
-                latitude = input("Veuillez entrer la latitude (ex: +48,34) (N --> + / S --> -) : \n")
-                longitude = input("Veuillez entrer la longitude (ex: +150,45) (E --> + / O --> -) : \n")
+                latitude = input("Veuillez entrer la latitude (ex: +48,3465) (N --> + / S --> -) : \n")
+                longitude = input("Veuillez entrer la longitude (ex: +150,4554) (E --> + / O --> -) : \n")
                 latitude_split = latitude[1:].split(",")
                 longitude_split = longitude[1:].split(",")
 
@@ -40,7 +40,17 @@ try:
                     latitude_sign = 255
 
                 latitude_integer = int(latitude_split[0])
-                latitude_decimal = int(latitude_split[1])
+                latitude_decimal = latitude_split[1]
+                
+                if (len(latitude_decimal) < 6):
+                    number_zero = 6 - len(latitude_decimal)
+                    while (number_zero != 0):
+                        latitude_decimal += "0"
+                        number_zero -= 1
+
+                latitude_decimal1 = int(latitude_decimal[0:2])
+                latitude_decimal2 = int(latitude_decimal[2:4])
+                latitude_decimal3 = int(latitude_decimal[4:6])
 
                 if ("-" in longitude):
                     longitude_sign = 0
@@ -48,12 +58,22 @@ try:
                     longitude_sign = 255
 
                 longitude_integer = int(longitude_split[0])
-                longitude_decimal = int(longitude_split[1])
+                longitude_decimal = longitude_split[1]
+
+                if (len(longitude_decimal) < 6):
+                    number_zero = 6 - len(longitude_decimal)
+                    while (number_zero != 0):
+                        longitude_decimal += "0"
+                        number_zero -= 1
+
+                longitude_decimal1 = int(longitude_decimal[0:2])
+                longitude_decimal2 = int(longitude_decimal[2:4])
+                longitude_decimal3 = int(longitude_decimal[4:6])
 
                 #rdr.write(9, [latitude_sign, latitude_integer, latitude_decimal, longitude_sign, longitude_integer, longitude_decimal, 0x76, 0x54, 0x32, 0x10, 0x69, 0x27, 0x46, 0x66, 0x66, 0x64])
                 # We can rewrite specific bytes in block using this method. None means "don't change this byte"
                 # Note that this won't do authorization, because we've already called do_auth for block 10
-                util.rewrite(9, [latitude_sign, latitude_integer, latitude_decimal, longitude_sign, longitude_integer, longitude_decimal])
+                util.rewrite(9, [latitude_sign, latitude_integer, latitude_decimal1, latitude_decimal2, latitude_decimal3, longitude_sign, longitude_integer, longitude_decimal1, longitude_decimal2, longitude_decimal3])
                 # This will write S2B1: [0x01, 0x23, 0xAB, 0xCD, 0xEF, 0x98, 0x76......] because we've rewritten third, fourth and fifth byte
                 util.read_out(9)
                 #util.dump()
