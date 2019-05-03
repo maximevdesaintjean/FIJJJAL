@@ -12,7 +12,7 @@ Motor::Motor(int pin) {
 void Motor::initialize() {
     gpioSetMode(this->pin, PI_OUTPUT);
     gpioSleep(PI_TIME_RELATIVE, 0.5, 0);
-	gpioWrite(this->pin, 1);
+    gpioWrite(this->pin, 1);
 }
 
 void Motor::stop() {
