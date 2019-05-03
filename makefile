@@ -2,10 +2,10 @@ all : drone.exe
 
 CC = g++
 
-drone.exe: main.o fijjal.o motor.o ultrasound.o pid.o 
-	$(CC) -o drone.exe main.o fijjal.o ./motor/motor.o ./ultrasound/ultrasound.o ./pid/pid.o -lpigpio -lpthread
+drone.exe: main.o fijjal.o motor.o ultrasound.o pid.o gyro.o
+	$(CC) -o drone.exe main.o fijjal.o ./motor/motor.o ./ultrasound/ultrasound.o ./pid/pid.o ./gyro/gyro.o -lpigpio -lpthread
 
-main.o: main.cpp fijjal.h ./motor/motor.h ./ultrasound/ultrasound.h ./pid/pid.h
+main.o: main.cpp fijjal.h ./motor/motor.h ./ultrasound/ultrasound.h ./pid/pid.h ./gyro/gyro.h
 	$(CC) -o main.o -c main.cpp
 
 
@@ -27,6 +27,10 @@ ultrasound.o: ./ultrasound/ultrasound.cpp ./ultrasound/ultrasound.h
 #PID
 pid.o: ./pid/pid.cpp ./pid/pid.h
 	$(CC) -o ./pid/pid.o -c ./pid/pid.cpp
+
+#Ultrasound
+gyro.o: ./gyro/gyro.cpp ./gyro/gyro.h
+	$(CC) -o ./gyro/gyro.o -c ./gyro/gyro.cpp
 
 
 clean:
