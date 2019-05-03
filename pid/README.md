@@ -7,7 +7,7 @@ The PID allows to control the motors. We can see the motor like a systeme, when 
 
 ## Calcul
 The regulation is based on a set-point and a mesured value. </br>
-With both elements, we can calculate the error like `error = setPoint - mesuredValue`. </br>
+With both elements, we can calculate the error like : `error = setPoint - mesuredValue`. </br>
 
 We can create four differents regulators:
 1) P
@@ -15,9 +15,8 @@ We can create four differents regulators:
 3) PD
 4) PID
 
-
 ### Regulator P
-This regulator is based only on the present error. </br> So, the action on the systeme is calculate like that : `action = Kp * error` where Kp is egale to the proportional factor.
+This regulator is based only on the present error. </br> So, the action on the systeme is calculate like that : `action = Kp * error` where Kp is equal to the proportional factor.
 
 ### Regulator PI
 The PI regulator use the proportional and integrator actions. </br> The integrator action use the futur error. Like we can not predict the futur, we sum all of the previous errors and divided it by the error's number, we take the mean. </br>
@@ -31,6 +30,12 @@ The derivator action allows to increase the system's dynamic. Be careful, to add
 
 ### Regulator PID
 This regulator is the most completed, we have the three actions. </br>
-We can cancel the stati error with the integrator, increase the dynamic and "boost" with the proportional.
+We can cancel the static error with the integrator, the derivator increase the dynamic and "boost" with the proportional.
 
 ## ESC mapping
+The ESC mapping is important because the PID can generate the output value different of the ESC input. </br>
+So, the principe is simple. We have two bounds: </br>
+1) The minimum value to send at the ESC, called *minBound* in the **pid.h**.
+2) The maximum value to send at the ESC, called *maxBound* in the **pid.h**.
+
+The both are determinated arbitrarily with tests.
