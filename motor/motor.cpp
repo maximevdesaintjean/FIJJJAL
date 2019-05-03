@@ -5,8 +5,9 @@
 
 using namespace std;
 
-Motor::Motor(int pin) {
+Motor::Motor(int pin, PID pid) {
     this->pin = pin; 
+    this->pid = pid;
 }
 
 void Motor::initialize() {
@@ -20,6 +21,11 @@ void Motor::stop() {
     gpioTerminate();
 }
 
-void Motor::setPWM(int value) {
-    gpioServo(pin, value);
+void Motor::control(float setPoint, float input) {
+    float ctrl = this->pid.calcPID(setPoint, input);
+    this->setPWM(ctrl);
+}
+
+void Motor::setPWM(float value) {
+    gpioServo(this->pin, value);
 }
