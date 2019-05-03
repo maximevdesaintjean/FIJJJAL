@@ -2,7 +2,6 @@
 #define H_ULTRASOUND
 
 #include <iostream>
-#include <tuple>
 
 using namespace std;
 
