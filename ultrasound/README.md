@@ -26,4 +26,4 @@ sending trigger signal and receiving echo signal. </br>
 ## Attention 
 If you are using a board wich support only 3.3V (like the raspberry Pi), you have to use two resistors.</br>
 *Formula :</br>
-`* 3.3/5 = R1/(R1+R2)`
+'* 3.3/5 = R1/(R1+R2)'
