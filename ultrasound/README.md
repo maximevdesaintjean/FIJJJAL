@@ -5,7 +5,7 @@ It also offer a good range of detection without contatc.
 
 ## features
 The modules includes ultrasonic transmitters, receiver and control circuit. </br>
-![Electric Parameter](C:\Users\maxim\OneDrive\Documents\cours\ECAM\Projet_drone\dossier)*Electric Parameter*
+![Electric Parameter](C:\Users\maxim\OneDrive\Documents\cours\ECAM\Projet_drone\dossier\electric_parameter.PNG)*Electric Parameter*
 
 ## Wire connecting
 * 5V Supply
