@@ -38,4 +38,12 @@ So, the principe is simple. We have two bounds: </br>
 1) The minimum value to send at the ESC, called *minBound* in the **pid.h**.
 2) The maximum value to send at the ESC, called *maxBound* in the **pid.h**.
 
-The both are determinated arbitrarily with tests.
+The both are determinated arbitrarily with tests. </br>
+
+We accept a maximum error (for the moment we accept 10°) and with this error, we calculate the maximum output that the regulator can give. </br>
+The mapping estimates that the regulator used is allways the **P**, so the maximum output accepted is : `Kp * errorMax`. We define the maximum output like the maximum bound for the ESC. </br>
+Now, we can use a simple formula to determinate the new output : `newOutput = minBound + (output/maxOutput) * maxBound`. </br>
+To be sure that the value send by the function is between the maximum and minimum bounds, we check if :
+1) The new output is smaller than *minBound*, we send the minimum bound.
+2) The new output is greater than *maxBound*, we send the maximum bound.
+3) The new output is between both bounds, we send the new output.
