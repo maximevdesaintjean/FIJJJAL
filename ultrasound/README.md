@@ -18,12 +18,12 @@ The Timing diagram is shown below. You only need to supply a short 10µs pulse t
 and then the module will send out an 8 cycle burst of ultrasound at 40 kHz and raise its echo. The Echo is a distance </br>
 object that is pulse width and the range in proportion. You can calculate the range through the time interval between 
 sending trigger signal and receiving echo signal. </br>
-*  Formula : 
-'* v= 340 m/s = 0.034 cm/µs
-'* t= d/v = 10 / 0.034 = 294 µs
-'* d= t*0.034/2
+*  Formula : </br>
+'* v= 340 m/s = 0.034 cm/µs </br>
+'* t= d/v = 10 / 0.034 = 294 µs </br>
+'* d= t*0.034/2 </br>
 
 ## Attention 
-If you are using a board wich support only 3.3V (like the raspberry Pi), you have to use two resistors.
-*Formula :
+If you are using a board wich support only 3.3V (like the raspberry Pi), you have to use two resistors.</br>
+*Formula :</br>
 '* 3.3/5 = R1/(R1+R2)
