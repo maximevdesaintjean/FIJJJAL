@@ -5,7 +5,14 @@ It also offer a good range of detection without contatc.
 
 ## features
 The modules includes ultrasonic transmitters, receiver and control circuit. </br>
-![Electric Parameter](C:\Users\maxim\OneDrive\Documents\cours\ECAM\Projet_drone\dossier\electric_parameter.PNG)*Electric Parameter*
+* Working Voltage 		: DC 5V
+* Working Current 		: 15 mA
+* Working Frequency 	: 40 Hz
+* Max Range 			: 4m
+* Min Range 			: 2cm
+* MeasuringAngle 		: 15 degree
+* Trigger Input Signal 	: 10us TTL pulse
+
 
 ## Wire connecting
 * 5V Supply
@@ -23,6 +30,7 @@ sending trigger signal and receiving echo signal. </br>
 `* t= d/v = 10 / 0.034 = 294 µs` </br>
 `* d= t*0.034/2` </br>
 
+![timing diagram](https://www.electrodragon.com/w/images/8/84/Frequency..jpg)
 ## Attention 
 If you are using a board wich support only 3.3V (like the raspberry Pi), you have to use two resistors.</br>
 * Formula : </br>
